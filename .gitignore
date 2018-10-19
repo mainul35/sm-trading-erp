@@ -31,3 +31,9 @@
 
 # "temporary" build files
 /target
+
+.gradle
+.idea
+build
+out
+*.iml
