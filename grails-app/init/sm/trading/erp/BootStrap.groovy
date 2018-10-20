@@ -3,7 +3,12 @@ package sm.trading.erp
 class BootStrap {
 
     def init = { servletContext ->
-        Role role = new Role('ROLE_ADMIN')
+        Role role
+        if (!Role.findByAuthority('ROLE_ADMIN')) {
+            role = new Role(authority: 'ROLE_ADMIN').save(failOnError: true, flush: true)
+        } else {
+            role = Role.findByAuthority('ROLE_ADMIN')
+        }
         User user = new User('mainul35', 'secret')
 
         user.email = "mainuls18@gmail.com"
@@ -14,10 +19,8 @@ class BootStrap {
         user.address = 'Avijan 9/2, Academy Road, College Gate, Tongi, Gazipur'
         user.joiningDate = new Date()
         user.role = role
-        role.users = []
-        role.addToUsers(user)
-        if (!Role.findByAuthority('ROLE_ADMIN')) {
-            role.save(flush: true, failOnError: true)
+        if (!User.findByEmail('mainuls18@gmail.com')) {
+            user.save(flush: true, failOnError: true)
         }
 
         log.info('role: {}', role.toString())

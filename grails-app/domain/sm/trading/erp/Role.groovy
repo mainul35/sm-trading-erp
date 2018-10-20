@@ -9,7 +9,7 @@ class Role implements GrantedAuthority{
     String authority
     static hasMany = [users: User]
     static constraints = {
-        authority nullable: false, unique: false
+        authority nullable: false, unique: true
         users nullable: true
     }
 
@@ -18,10 +18,10 @@ class Role implements GrantedAuthority{
     }
 
     @Override
-    public String toString() {
+    String toString() {
         return "Role{" +
                 "id=" + id +
                 ", authority='" + authority + '\'' +
-                '}';
+                '}'
     }
 }

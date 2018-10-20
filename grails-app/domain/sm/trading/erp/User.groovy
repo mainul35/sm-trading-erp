@@ -26,22 +26,23 @@ class User implements UserDetails {
     static belongsTo = Role
 
     static constraints = {
-        firstName nullable: false, blank: false
+        firstName nullable: true, blank: false
         lastName nullable: true, blank: true
-        username nullable: true, blank: true, unique: true
-        email unique: true, nullable: false, blank: false, email: true
-        password nullable: false, blank: false
+        username nullable: true, unique: true
+        email unique: true, nullable: false, email: true
+        password nullable: false
         address nullable: true
-        position nullable: false, blank: false
-        contact nullable: false, blank: false
+        position nullable: true
+        contact nullable: true
         joiningDate nullable: true
         leavingDate nullable: true
-        profileImage nullable: true, blank: true
+        profileImage nullable: true
         role nullable: true
     }
 
     static mapping = {
         version false
+        table 'tbl_user'
     }
 
     User(String username, String password) {
@@ -127,7 +128,7 @@ class User implements UserDetails {
     }
 
     @Override
-    public String toString() {
+    String toString() {
         return "User{" +
                 ", role=" + role +
                 ", id=" + id +
@@ -146,6 +147,6 @@ class User implements UserDetails {
                 ", accountExpired=" + accountExpired +
                 ", accountLocked=" + accountLocked +
                 ", passwordExpired=" + passwordExpired +
-                '}';
+                '}'
     }
 }

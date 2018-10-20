@@ -62,6 +62,8 @@ dependencies {
     runtime "org.apache.tomcat:tomcat-jdbc"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.8"
     runtime "mysql:mysql-connector-java:5.1.37"
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+
 //    runtime "org.grails.plugins:resources:1.2.14"
     testCompile "org.grails:grails-gorm-testing-support"
     testCompile "org.grails:grails-web-testing-support"
@@ -89,3 +91,6 @@ assets {
     minifyJs = true
     minifyCss = true
 }
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
