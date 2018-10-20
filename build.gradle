@@ -94,3 +94,7 @@ assets {
 
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
+
+bootRepackage {
+    mainClass = 'sm.trading.erp.Application'
+}
