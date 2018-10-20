@@ -19,6 +19,7 @@ apply plugin:"war"
 apply plugin:"org.grails.grails-web"
 apply plugin:"asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
+apply plugin: 'java'
 
 repositories {
     mavenLocal()
@@ -92,9 +93,11 @@ assets {
     minifyCss = true
 }
 
+springBoot {
+    mainClass = 'sm.trading.erp.Application'
+}
+
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
 
-bootRepackage {
-    mainClass = 'sm.trading.erp.Application'
-}
+bootRepackage.enabled = false
