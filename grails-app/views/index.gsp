@@ -2,26 +2,28 @@
 <html>
 <head>
     <meta name="layout" content="header"/>
-    <title>Welcome to Grails</title>
+    <title>${'login'}</title>
 </head>
 
-<body class="bg-light">
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-2">
+            <h3><g:message code="login"/></h3>
+            <form class="form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="${g.message(code: "email")}" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="${g.message(code: "password")}" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="${g.message(code: "login")}" />
+                </div>
+                <div class="form-group">
 
-<div class="container-fluid">
-<h1>Welcome!</h1>
-    <h3>
-        To view all data, please redirect to "View All"
-    </h3>
+                    <a href="#" class="ForgetPwd" value="Login"><g:message code="forgot.password"/></a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-
-<img src="C:/temp/7/1522341096706.jpg"/>
-<script>
-
-    // For JQuery datatable
-    $(document).ready(function() {
-        $('#example').DataTable();
-    } );
-</script>
-
-</body>
-</html>

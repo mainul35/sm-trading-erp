@@ -1,5 +1,5 @@
 
-import sm.trading.erp.CustomAuthentication
+//import sm.trading.erp.CustomAuthentication
 import sm.trading.erp.CustomUserDetailsService
 import sm.trading.erp.RoleService
 import sm.trading.erp.UserPasswordEncoderListener
@@ -10,6 +10,6 @@ beans = {
     userPasswordEncoderListener(UserPasswordEncoderListener)
     userDetailsService(CustomUserDetailsService)
     roleService(RoleService)
-    customAuthentication(CustomAuthentication)
+//    customAuthentication(CustomAuthentication)
     userService(UserService)
 }
