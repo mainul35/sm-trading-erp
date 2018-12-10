@@ -9,7 +9,9 @@ class UrlMappings {
             }
         }
 
+        "/admin/$controller/$action"()
         "/"(view:"/index")
+        "/auth/login"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

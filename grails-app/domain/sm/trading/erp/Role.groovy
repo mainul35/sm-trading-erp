@@ -4,24 +4,13 @@ import grails.persistence.Entity
 import org.springframework.security.core.GrantedAuthority
 
 @Entity
-class Role implements GrantedAuthority{
+class Role{
 
-    String authority
-    static hasMany = [users: User]
+    String name
+    static belongsTo = User
+    Collection<Permission> permissions
+
     static constraints = {
-        authority nullable: false, unique: true
-        users nullable: true
-    }
-
-    Role(String authority) {
-        this.authority = authority
-    }
-
-    @Override
-    String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", authority='" + authority + '\'' +
-                '}'
+        name nullable: false, unique: true
     }
 }

@@ -4,8 +4,8 @@ buildscript {
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
+        classpath "org.grails:grails-gradle-plugin:3.3.8"
+        classpath "org.grails.plugins:hibernate5:6.1.11"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.14.8"
     }
 }
