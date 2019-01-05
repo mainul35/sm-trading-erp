@@ -8,10 +8,10 @@ class ActiveSession {
     String IP
     String accessToken
     String activeSite
-    Date created
-    Date updated
-    Date willDestroyAt
-
+    Date dateCreated
+    Date lastUpdated
+    Date willDestroyAt = null
+    ClientDetails clientDetails
 
     static constraints = {
     }

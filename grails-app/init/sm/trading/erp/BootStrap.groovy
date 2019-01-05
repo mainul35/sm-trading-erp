@@ -1,5 +1,6 @@
 package sm.trading.erp
 
+import sm.trading.erp.auth.ClientDetails
 import sm.trading.erp.auth.Role
 import sm.trading.erp.auth.User
 import groovy.time.TimeCategory
@@ -8,13 +9,23 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        User user = new User()
-        user.name = "Syed Mainul Hasan"
-        user.email = "mainuls18@gmail.com"
-        user.password = "secret".encodeAsBase64()
+        if(!User.findByEmail("mainuls18@gmail.com")){
+            User user = new User()
+            user.name = "Syed Mainul Hasan"
+            user.email = "mainuls18@gmail.com"
+            user.password = "secret".encodeAsBase64()
+            user.save(flush: true)
+            log.info('User: {}', user.toString())
+        }
 
-        user.save(flush: true)
-        log.info('user: {}', user.toString())
+        if(!ClientDetails.findAllByAppName('bismillah-app')){
+            ClientDetails clientDetails = new ClientDetails()
+            clientDetails.appName = 'bismillah-app'
+            clientDetails.clientId = UUID.randomUUID().encodeAsBase64()
+            clientDetails.clientSecret = UUID.randomUUID().encodeAsBase64()
+            clientDetails.save(flush: true, failOnError: true)
+            log.info('Client Details: {}', clientDetails.toString())
+        }
     }
 
     def destroy = {

@@ -8,16 +8,23 @@ Fusion.requestManager.onSubmit(function () {
         var form = $(this).closest("form")
         var url = form.attr("to-url")
         var data = JSON.stringify(form.serializeArray())
-        console.log(navigator.userAgent)
         data = btoa(data)
+        var clientDetails = JSON.stringify([
+            {appName: 'bismillah-app'},
+            {clientId: 'NzA3NjM4YmUtMjViMy00ZDVlLThhYzctNjYyZjFhNWJhOTI1'},
+            {clientSecret:'ODE4N2E2NDQtMmExOS00NTQ0LWE5MjUtYmQwNmEwMjMwM2Fm'}
+        ])
+
         $.ajax({
             type: 'POST',
             url: url+"?key="+data,
             data: {},
             dataType: "json",
+            headers: {
+                "client-details": btoa(clientDetails)
+            },
             success: function (result) {
                 console.log(result.url)
-                window.location.assign(`http://${result.url}?token=${result.token}`)
             }
         });
     })
