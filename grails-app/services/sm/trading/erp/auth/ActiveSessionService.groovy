@@ -11,6 +11,6 @@ class ActiveSessionService {
     }
 
     def saveActiveSession(ActiveSession activeSession) {
-        activeSession.save(flush: true)
+        activeSession.save(flush: true, failOnError: true)
     }
 }
