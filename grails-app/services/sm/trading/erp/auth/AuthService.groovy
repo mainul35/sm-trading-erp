@@ -15,7 +15,7 @@ class AuthService {
     ActiveSessionService activeSessionService
 
     def authenticate(def authentication) {
-        if(authentication[0]?.name == 'email') {
+        if (authentication[0]?.name == 'email') {
             def user = userService.getUserByEmail(authentication[0].value)
             if (authentication[1]?.name == 'password') {
                 if (user?.password == authentication[1]?.value.encodeAsBase64()) {
@@ -23,10 +23,10 @@ class AuthService {
                 }
             }
         }
-        throw new Exception()
+        return null
     }
 
-    ActiveSession getActiveSession(String accessToken){
+    ActiveSession getActiveSession(String accessToken) {
         ActiveSession activeSession = ActiveSession.findByAccessToken(accessToken)
     }
 
@@ -36,19 +36,5 @@ class AuthService {
 
     def saveSession(ActiveSession activeSession) {
         activeSessionService.saveActiveSession(activeSession)
-    }
-
-    def renderContent(HttpServletResponse response, String url){
-        URL ur = new URL(url);
-        URLConnection conn = ur.openConnection();
-        InputStream is = conn.getInputStream();
-        String foo = new Scanner(is).useDelimiter("\\A").next();
-        response.setContentType("text/html");
-
-        response.setStatus(HttpServletResponse.SC_OK);
-
-        is.close()
-        return foo
-//        response.sendRedirect(url)
     }
 }

@@ -4,27 +4,27 @@ Fusion.requestManager.beforeSubmit(function () {
 })
 
 Fusion.requestManager.onSubmit(function () {
-    $(".btnSubmit").on('click', function (e) {
+    $(".btnSubmit").unbind().on('click', function (e) {
         var form = $(this).closest("form")
         var url = form.attr("to-url")
         var data = JSON.stringify(form.serializeArray())
         data = btoa(data)
-        var clientDetails = JSON.stringify([
-            {appName: 'bismillah-app'},
-            {clientId: 'NzA3NjM4YmUtMjViMy00ZDVlLThhYzctNjYyZjFhNWJhOTI1'},
-            {clientSecret:'ODE4N2E2NDQtMmExOS00NTQ0LWE5MjUtYmQwNmEwMjMwM2Fm'}
-        ])
-
         $.ajax({
             type: 'POST',
-            url: url+"?key="+data,
+            url: url + "?key=" + data,
             data: {},
             dataType: "json",
             headers: {
-                "client-details": btoa(clientDetails)
+                "client-details": Fusion.authentication.clientDetails
             },
             success: function (result) {
-                console.log(result.url)
+                document.cookie = `token=${result.responseData.token}`
+                if (result.responseData.statusCode == 200) {
+                    location.href = '/management/dashboard'
+                }
+                // else if (result.responseData.statusCode == 404) {
+                //     console.log(result.responseData.token.message)
+                // }
             }
         });
     })

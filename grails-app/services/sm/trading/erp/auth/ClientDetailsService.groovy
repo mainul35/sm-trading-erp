@@ -2,7 +2,6 @@ package sm.trading.erp.auth
 
 import grails.gorm.transactions.Transactional
 
-@Transactional
 class ClientDetailsService {
 
     ClientDetails findBy(String key, String value) {
@@ -15,7 +14,7 @@ class ClientDetailsService {
         return ClientDetails.findByClientId(clientId: clientId)
     }
 
-    Integer count(){
+    Integer count() {
         return ClientDetails.count()
     }
 }
