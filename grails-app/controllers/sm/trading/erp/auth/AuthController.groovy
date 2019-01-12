@@ -17,15 +17,16 @@ class AuthController {
                             responseData: params.responseDataModel
                     ] as JSON)
         } else {
-            Cookie cookie = new Cookie("token", params?.responseDataModel?.token ?: '')
-            cookie.setPath('/')
-            cookie.setSecure(true)
-            response.addCookie(cookie)
             render([responseData: params.responseDataModel] as JSON)
         }
     }
 
     def login() {
         render(view: "login")
+    }
+
+    def logout() {
+        session[params.responseDataModel.token] = null
+        redirect(controller: 'auth', action: 'login')
     }
 }

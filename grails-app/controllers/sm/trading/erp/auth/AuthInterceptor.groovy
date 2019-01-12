@@ -12,7 +12,6 @@ class AuthInterceptor {
 
     AuthInterceptor() {
         matchAll()
-                .excludes(controller: 'auth', action: 'login')
     }
 
     boolean before() {
@@ -80,7 +79,7 @@ class AuthInterceptor {
                 return false
             }
         } else {
-            if (request.requestURI == '/') {
+            if (request.requestURI == '/' || request.requestURI == '/auth/login') {
                 ActiveSession activeSession = findActiveSessionByCookie()
                 if (activeSession) {
                     redirect(uri: '/management/dashboard')

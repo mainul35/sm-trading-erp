@@ -18,6 +18,7 @@ Fusion.requestManager.onSubmit(function () {
                 "client-details": Fusion.authentication.clientDetails
             },
             success: function (result) {
+                document.cookie = 'token='
                 document.cookie = `token=${result.responseData.token}`
                 if (result.responseData.statusCode == 200) {
                     location.href = '/management/dashboard'
