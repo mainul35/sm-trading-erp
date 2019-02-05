@@ -2,6 +2,7 @@ package sm.trading.erp.auth
 
 import grails.converters.JSON
 import groovy.time.TimeCategory
+import org.springframework.context.ApplicationContext
 
 import javax.servlet.http.Cookie
 
@@ -13,11 +14,18 @@ class AuthInterceptor {
     AuthInterceptor() {
         matchAll()
     }
-
-    boolean before() {
+/**
+ *
+ *  /auth/verify -> Login
+ *  /auth/token?grant_type=password -> password flow
+ *  /auth/token?grant_type=refresh_token&refresh_token=token -> Refresh token flow
+ *  /api/**?grant_type=access_token&access_token=token -> Access token flow
+ *
+ * */
+    boolean before(ApplicationContext applicationContext) {
         Map responseDataModel = [authenticated: false, message: '', statusCode: 404, token: '']
         // Check if the request header has client credentials
-        if (request.xhr) {
+        if (request.requestURI == '/auth/application' || request.requestURI == '/auth/verify') {
             if (request.getHeader("client-details")) {
                 def clientDetails = authService.decrypt(request.getHeader("client-details"))
                 def clientCredentials = clientDetailsService.findBy('appName', clientDetails[0]?.appName)

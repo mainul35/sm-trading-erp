@@ -8,7 +8,24 @@ class AuthController {
 
     AuthService authService
 
+    def register() {
+
+    }
+
     def verify() {
+        if (params.responseDataModel.authenticated == false) {
+            redirect(
+                    controller: 'auth',
+                    action: 'login',
+                    model: [
+                            responseData: params.responseDataModel
+                    ])
+        } else {
+            redirect(controller: 'management', action: 'dashboard')
+        }
+    }
+
+    def authorize() {
         if (params.responseDataModel.authenticated == false) {
             redirect(
                     controller: 'auth',

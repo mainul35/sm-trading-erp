@@ -6,5 +6,6 @@
 //= require libs/jquery_ui/jquery-ui
 //= require fusion/fusion.core
 //= require fusion/fusion.requestManager
-//= require form.action
+//= require auth
+//= require dashboard
 //= require_self

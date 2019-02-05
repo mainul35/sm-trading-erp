@@ -1,8 +1,3 @@
-Fusion.requestManager.beforeSubmit(function () {
-    $("form").attr("onsubmit", "return false")
-
-})
-
 Fusion.requestManager.onSubmit(function () {
     $(".btnSubmit").unbind().on('click', function (e) {
         var form = $(this).closest("form")
@@ -23,9 +18,6 @@ Fusion.requestManager.onSubmit(function () {
                 if (result.responseData.statusCode == 200) {
                     location.href = '/management/dashboard'
                 }
-                // else if (result.responseData.statusCode == 404) {
-                //     console.log(result.responseData.token.message)
-                // }
             }
         });
     })
