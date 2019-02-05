@@ -8,10 +8,8 @@ grails:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
             events: false
-    guides:
-        cdnFolder: F:\Groovy\sm-trading-erp/grails-app/assets/images
-        #        cdnFolder: C:\temp\static\images
-        cdnRootUrl: http://localhost:8888
+    cors:
+        enabled: true
 info:
     app:
         name: '@info.app.name@'
